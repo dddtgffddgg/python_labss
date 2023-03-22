@@ -6,85 +6,40 @@ import simple_draw as sd
 sd.resolution = (1200, 600)
 
 # Нарисовать пузырек - три вложенных окружностей с шагом 5 пикселей
-center_position = sd.get_point(300, 300)  # центр пузырька
-radius = 50  # радиус первой окружности
-step = 5  # шаг
+point = sd.get_point(500, 400) 
+radius = 50
+for i in range(3):
+    radius += 10 
+    sd.circle(center_position = point, radius = radius, width = 5)
 
-for _ in range(3):
-    radius += step
-    sd.circle(center_position, radius=radius, width=2)
-
-# Написать функцию рисования пузырька, принммающую 3 (или более) параметра: точка рисования, шаг и цвет
-def draw_bubble(center_position, step, color):
-    radius = 50  # радиус первой окружности
-    for _ in range(3):
+# Написать функцию рисования пузырька, принммающую 3 (или более) параметра: точка рисования, шаг и цвет"
+def bubbles(point, step, color):
+    radius = 50
+    for i in range(3):
         radius += step
-        sd.circle(center_position, radius=radius, color=color, width=2)
+        sd.circle(center_position = point, radius = radius, color = color, width = 2)
+
+point = sd.get_point(300, 300)
+bubbles(point=point, step=10, color = sd.COLOR_GREEN)
 
 # Нарисовать 10 пузырьков в ряд
-def draw_bubble(center_position, step, color):
-    radius = 50  # радиус первой окружности
-    for _ in range(3):
-        radius += step
-        sd.circle(center_position, radius=radius, color=color, width=2)
-
-sd.resolution = (1200, 600)
-
-x_start = 100  # начальная координата x
-y = 300  # координата y
-step = 60  # шаг между пузырьками
-color = sd.COLOR_ORANGE  # цвет пузырьков
-
-for i in range(10):
-    x = x_start + i * step
-    center_position = sd.get_point(x, y)
-    draw_bubble(center_position, step=5, color=color)
+for x in range(100, 700, 1000):
+    point = sd.get_point(x, 500)
+    bubbles(point = point, step = 10, color = sd.COLOR_GREEN)
 
 # Нарисовать три ряда по 10 пузырьков
-def draw_bubble(center_position, step, color):
-    radius = 50  # радиус первой окружности
-    for _ in range(3):
-        radius += step
-        sd.circle(center_position, radius=radius, color=color, width=2)
+for y in range(100, 301, 100):
+    for x in range(100, 1001, 100):
+        point = sd.get_point(x, y)
+        bubbles(point = point, step = 10, color = sd.COLOR_GREEN)
 
 sd.resolution = (1200, 900)
-
-x_start = 100  # начальная координата x
-y_start = 100  # начальная координата y
-step = 60  # шаг между пузырьками
-color1 = sd.COLOR_ORANGE  # цвет первого ряда пузырьков
-color2 = sd.COLOR_BLUE  # цвет второго ряда пузырьков
-color3 = sd.COLOR_GREEN  # цвет третьего ряда пузырьков
-
-for row in range(3):  # внешний цикл по рядам
-    y = y_start + row * 200
-    for i in range(10):  # внутренний цикл по пузырькам в ряду
-        x = x_start + i * step
-        center_position = sd.get_point(x, y)
-        if row == 0:
-            color = color1
-        elif row == 1:
-            color = color2
-        else:
-            color = color3
-        draw_bubble(center_position, step=5, color=color)
 
 # Нарисовать 100 пузырьков в произвольных местах экрана случайными цветами
-import random
-
-def draw_bubble(center_position, step, color):
-    radius = 50  # радиус первой окружности
-    for _ in range(3):
-        radius += step
-        sd.circle(center_position, radius=radius, color=color, width=2)
+for x in range(100):
+    point = sd.random_point()
+    bubbles(point=point, step = 5)
 
 sd.resolution = (1200, 900)
-
-for _ in range(100):
-    x = random.randint(0, sd.resolution[0])
-    y = random.randint(0, sd.resolution[1])
-    center_position = sd.get_point(x, y)
-    color = sd.random_color()
-    draw_bubble(center_position, step=5, color=color)
 
 sd.pause()
