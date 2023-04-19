@@ -160,7 +160,17 @@ def count_coins(total):
     >>> check(LAB_SOURCE_FILE, 'count_coins', ['While', 'For'])
     True
     """
-    "*** YOUR CODE HERE ***"
+    denominations = [1, 5, 10, 25]
+    def cc(amount, coins_available):
+        if amount == 0:
+            return 1
+        if amount < 0 or not coins_available:
+            return 0
+        else:
+            ways_without_coin = cc(amount, coins_available[:-1])
+            ways_with_coin = cc(amount - coins_available[-1], coins_available)
+            return ways_without_coin + ways_with_coin
+    return cc(total, denominations)
 
 
 from operator import sub, mul
