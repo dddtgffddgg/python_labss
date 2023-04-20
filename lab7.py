@@ -4,7 +4,6 @@ this_file = __file__
 
 def skip_add(n):
     """ Принимает число n и возвращает сумму n + n-2 + n-4 + n-6 + ... + 0.
-
     >>> skip_add(5)  # 5 + 3 + 1 + 0
     9
     >>> skip_add(10) # 10 + 8 + 6 + 4 + 2 + 0
@@ -25,7 +24,6 @@ def summation(n, term):
 
     """Возвращает сумму первых n элементов в поледовательности, заданной term.
     Реализовать с помощью рекурсии!
-
     >>> summation(5, lambda x: x * x * x) # 1^3 + 2^3 + 3^3 + 4^3 + 5^3
     225
     >>> summation(9, lambda x: x + 1) # 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10
@@ -38,7 +36,6 @@ def summation(n, term):
     ...       ['While', 'For'])
     True
     """
-    assert n >= 1
     "*** YOUR CODE HERE ***"
     if n == 0:
         return 0
@@ -49,7 +46,6 @@ import math
 def paths(m, n):
     """Возвращает число путей из нижнего левого угла сетки M x N с координатами (0, 0)
     в верхний правый (M-1, N-1), используя только сдвиги вправо или вверх.
-
         finish
           v
     ---------
@@ -59,7 +55,6 @@ def paths(m, n):
     ---------
       ^
     start
-
     >>> paths(2, 2)
     2
     >>> paths(3, 3)
@@ -110,7 +105,6 @@ def max_subseq(n, t):
         025
         125
     из них наибольшим будет число 225.
-
     >>> max_subseq(20125, 3)
     225
     >>> max_subseq(20125, 5)
@@ -125,20 +119,28 @@ def max_subseq(n, t):
     5
     """
     "*** YOUR CODE HERE ***"
-    digits = str(n)
-    subseqs = []
-    for i in range(len(digits)):
-        for j in range(i+1, min(i+t+1, len(digits)+1)):
-            subseqs.append(int(digits[i:j]))
-    return max(subseqs)        
-
+    if t == 0: 
+        return 0
+    elif t >= len(str(n)):
+        return n
+    else: 
+        a = 0
+        while t > 0: 
+            b = 0
+            n1 = n//10**(t-1)
+            while n1 > 0: 
+                if n1%10 >= b: 
+                    b = n1%10
+                n1 = n1//10
+            t -= 1
+            a += b*10**t 
+        return a                   
 
 def add_chars(w1, w2):
     """
     Необязательное задание.
     Возвращает строку, содержащую символы, недостающие для получения w2 из w1.
     Подразумевается, что w1 - это подпоследовательность w2.
-
     >>> add_chars("owl", "howl")
     'h'
     >>> add_chars("want", "wanton")
