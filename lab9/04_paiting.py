@@ -18,35 +18,15 @@
 #  - справа в небе - радуга, слева - солнце (весна же!)
 # пример см. results/04_painting.jpg
 # Приправить своей фантазией по вкусу (коты? коровы? люди? трактор? что придумается)
-import simple_draw as sd
-from my_drawing_package import *
+# main.py
 
-# создаем окно
-SCREEN_WIDTH, SCREEN_HEIGHT = 800, 600
-simple_draw.window_size = (SCREEN_WIDTH, SCREEN_HEIGHT)
-simple_draw.caption = 'Утро в деревне'
+import drawing
 
-# рисуем задний фон
-draw_sky(SCREEN_WIDTH, SCREEN_HEIGHT)
-draw_sun(SCREEN_WIDTH, SCREEN_HEIGHT)
-
-# рисуем объекты на заднем фоне
-draw_snowdrift(100, 100, 200, color=simple_draw.COLOR_WHITE)
-draw_rainbow(500, 100, 200, start_color=simple_draw.COLOR_RED, end_color=simple_draw.COLOR_BLUE)
-
-# рисуем передний план
-draw_brick_house(400, 100, 200)
-draw_tree(600, 100, 100)
-draw_tree(700, 200, 150)
-
-# рисуем дополнительные объекты
-draw_smile(450, 150, 50)
-draw_snowflake(150, 150, 50)
-
-# запускаем цикл обработки событий
-sd.pause()
-
-
+drawing.draw_rainbow()
+drawing.draw_walls()
+drawing.draw_trees()
+drawing.draw_smiley()
+drawing.draw_snowflake()
 
 # Усложненное задание (делать по желанию)
 # Анимировать картину.
