@@ -1,0 +1,9 @@
+в __init__.py добавить следующее: 
+# -*- coding: utf-8 -*-
+
+# drawing/__init__.py
+
+from .rainbow import *
+from .trees import *
+from .smiley import *
+from .snowflake import *
