@@ -49,4 +49,5 @@ def burger_Grand_De_Lyux():
     my_burger.add_patty()
     my_burger.add_cheese()
     my_burger.add_bun()
+Grand_De_Lyux        
 print("Готово! Приятного аппетита!")
