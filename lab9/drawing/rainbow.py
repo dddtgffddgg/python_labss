@@ -1,8 +1,8 @@
-# drawing/rainbow.py
+from PIL import Image, ImageDraw
+import math
 
 def draw_rainbow():
     print("Отрисовываем радугу")
-    import math
 
     # Определяем размеры изображения
     width = 400
