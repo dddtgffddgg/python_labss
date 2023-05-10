@@ -20,13 +20,63 @@
 # Приправить своей фантазией по вкусу (коты? коровы? люди? трактор? что придумается)
 # main.py
 
-import drawing
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
-drawing.draw_rainbow()
-drawing.draw_walls()
-drawing.draw_trees()
-drawing.draw_smiley()
-drawing.draw_snowflake()
+# Создать пакет, в который скопировать (или при необходимости написать) функции отрисовки
+#  - радуги
+#  - стены
+#  - дерева
+#  - смайлика
+#  - снежинок
+# Функции по модулям разместить по тематике. Название пакета и модулей - по смыслу.
+# Создать модуль с функцией отрисовки кирпичного дома с широким окном и крышей.
+
+# С помощью созданного пакета нарисовать эпохальное полотно "Утро в деревне".
+# На картине должны быть:
+#  - кирпичный дом, в окошке - смайлик.
+#  - слева от дома - сугроб (предположим что это ранняя весна)
+#  - справа от дома - дерево (можно несколько)
+#  - справа в небе - радуга, слева - солнце (весна же!)
+# пример см. results/04_painting.jpg
+# Приправить своей фантазией по вкусу (коты? коровы? люди? трактор? что придумается)
+# main.py
+
+import simple_draw as sd
+from drawing.brick_house import draw_brick_house_with_window
+from drawing.rainbow import draw_rainbow
+from drawing.smile import draw_smile
+from drawing.snowflakes import snowflake
+from drawing.tree import draw_tree
+
+# Пример использования функций
+
+# Рисование кирпичного дома с окном
+start_point = sd.get_point(100, 100)
+draw_brick_house_with_window(start_point=start_point, width=200, height=150, window_size=50)
+
+# Рисование радуги
+draw_rainbow()
+
+# Рисование смайлика
+draw_smile(x=400, y=300, radius=100)
+
+# Рисование снежинок
+for _ in range(10):
+    point = sd.get_point(sd.random_number(0, sd.resolution[0]), sd.random_number(0, sd.resolution[1]))
+    snowflake(center=point, length=100)
+
+# Рисование дерева
+draw_tree()
+
+# Ожидание закрытия окна
+sd.pause()
+
+
+# Усложненное задание (делать по желанию)
+# Анимировать картину.
+# Пусть слева идет снегопад, радуга переливается цветами, смайлик моргает, солнце крутит лучами, етс.
+# Задержку в анимировании все равно надо ставить, пусть даже 0.01 сек - так библиотека устойчивей работает.
 
 # Усложненное задание (делать по желанию)
 # Анимировать картину.
