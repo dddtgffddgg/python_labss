@@ -1,37 +1,31 @@
-from PIL import Image, ImageDraw
-import math
+import simple_draw as sd
 
 def draw_rainbow():
     print("Отрисовываем радугу")
 
-    # Определяем размеры изображения
-    width = 400
-    height = 300
+    # Определяем размеры экрана
+    width = 800
+    height = 600
 
-    # Определяем центр изображения
-    center_x = width / 2
-    center_y = height / 2
+    # Определяем центр экрана
+    center_x = width // 2
+    center_y = height // 2
 
     # Определяем радиус окружности
     radius = min(width, height) * 0.4
 
     # Определяем цвета радуги
-    colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple']
+    colors = [sd.COLOR_RED, sd.COLOR_ORANGE, sd.COLOR_YELLOW, sd.COLOR_GREEN, sd.COLOR_BLUE, sd.COLOR_PURPLE]
 
     # Определяем угол, на который нужно повернуться для начала отрисовки радуги
-    start_angle = math.pi / 6
-
-    # Создаем изображение
-    image = Image.new('RGB', (width, height), 'white')
-    draw = ImageDraw.Draw(image)
+    start_angle = 30
 
     # Отрисовываем радугу
     for i in range(len(colors)):
         color = colors[i]
-        angle = start_angle + i * math.pi / 3
-        x = center_x + math.cos(angle) * radius
-        y = center_y - math.sin(angle) * radius
-        draw.arc((x - radius, y - radius, x + radius, y + radius), start=math.degrees(angle) + 180, end=math.degrees(angle) + 360, fill=color)
+        angle = start_angle + i * 60
+        point = sd.get_point(center_x, center_y)
+        sd.circle(center_position=point, radius=radius, color=color, width=20, start_angle=angle, end_angle=angle+60)
 
-    # Отображаем изображение
-    image.show()
+    # Ожидание закрытия окна
+    sd.pause()
