@@ -17,3 +17,11 @@ def draw_house(height, width, start, colorL, color):
                  width=1, color=colorL)
     point_list = [sd.Point(start-80, height), sd.Point(start+width//2, height+200), sd.Point(widths+80, height)]
     sd.polygon(point_list, width = 0, color=sd.COLOR_DARK_GREEN)
+    
+    window_width = width // 4
+    window_height = height // 2
+    window_start_x = start + (width - window_width) // 2
+    window_start_y = 150 + (height - window_height) // 2
+    sd.rectangle(left_bottom=sd.Point(window_start_x, window_start_y), 
+                 right_top=sd.Point(window_start_x + window_width, window_start_y + window_height), 
+                 width=1, color=sd.COLOR_WHITE)
