@@ -52,7 +52,23 @@ house_color = (136,69,53)
 house.draw_house(house_height+100, house_width, house_start, house_lines_color, house_color)
 
 
-smile.draw_smile(x = 1000, y=400, radius=100)
+smile_x = tree_start.x + 250  # Положение смайлика по оси X
+smile_y = tree_start.y + 200  # Положение смайлика по оси Y
+smile_radius = 100
+
+# Нарисуем смайлик
+smile.draw_smile(x=smile_x, y=smile_y, radius=smile_radius)
+
+# Нарисуем рот
+sd.circle(center_position=sd.Point(smile_x, smile_y - smile_radius // 2), radius=smile_radius // 2,
+          color=sd.COLOR_DARK_RED, width=10)
+
+# Нарисуем глаза
+eye_radius = 15
+eye_y = smile_y + smile_radius // 4  # Положение глаз по оси Y
+sd.circle(center_position=sd.Point(smile_x - smile_radius // 3, eye_y), radius=eye_radius, color=sd.COLOR_BLACK, width=0)
+sd.circle(center_position=sd.Point(smile_x + smile_radius // 3, eye_y), radius=eye_radius, color=sd.COLOR_BLACK, width=0)
+
 
 
 sd.pause()
