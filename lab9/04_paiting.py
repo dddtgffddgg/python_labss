@@ -43,33 +43,31 @@
 # main.py
 
 import simple_draw as sd
-from drawing.brick_house import draw_brick_house_with_window
-from drawing.rainbow import draw_rainbow
-from drawing.smile import draw_smile
-from drawing.snowflakes import snowflake
-from drawing.tree import draw_tree
+from drawing import rainbow as rb, house as H, tree, smile, snowflake
 
-# Пример использования функций
 
-# Рисование кирпичного дома с окном
-start_point = sd.get_point(100, 100)
-draw_brick_house_with_window(start_point=start_point, width=200, height=150, window_size=50)
+sd.resolution = (1920, 1080)
 
-# Рисование радуги
-draw_rainbow()
+sd.ellipse(sd.Point(-180, -250), sd.Point(2100, 250), color=sd.COLOR_GREEN)
 
-# Рисование смайлика
-draw_smile(x=400, y=300, radius=100)
+rainbow_start = sd.Point(760, -150)
+rainbow_rad = 1300
+rainbow_width = 15
+rb.draw_rainbow(rainbow_start, rainbow_rad, rainbow_width)
 
-# Рисование снежинок
-for _ in range(10):
-    point = sd.get_point(sd.random_number(0, sd.resolution[0]), sd.random_number(0, sd.resolution[1]))
-    snowflake(center=point, length=100)
+house_height = 400
+house_width = 400
+house_start = 560
+house_lines_color = sd.COLOR_WHITE
+house_color = (136,69,53)
+H.draw_house(house_height+150, house_width, house_start, house_lines_color, house_color)
 
-# Рисование дерева
-draw_tree()
+tree_leaves_color = sd.COLOR_GREEN
+tree_color = (101, 67, 33)
+tree_start = sd.Point(1400, 150)
+tree.draw_tree(tree_start, tree_leaves_color, tree_color)
 
-# Ожидание закрытия окна
+
 sd.pause()
 
 
